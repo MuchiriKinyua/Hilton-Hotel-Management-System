@@ -40,5 +40,8 @@ class AdminController extends Controller
 
     return redirect()->route('user.index')->with('success', 'User updated successfully.');
 }
+    public function home(){
+        return view('home.index');
+    }
 
 }
