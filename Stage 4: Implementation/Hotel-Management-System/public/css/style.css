@@ -943,6 +943,38 @@ line-height: 35px;
      margin-top: 90px;
 }
 
-
+/* Ensure full-width for the header */
+.header, .header .container, .header .row {
+     width: 100%;
+     margin: 0;
+     padding: 0;
+ }
+ 
+ /* Full-width banner section */
+ .banner_main {
+     width: 100%;
+     margin: 0;
+     padding: 0;
+ }
+ 
+ .carousel-inner img {
+     width: 100%; /* Ensure images stretch to full width */
+     height: auto; /* Maintain aspect ratio */
+ }
+ 
+ .carousel-inner {
+     width: 100%;
+     margin: 0 auto; /* Center the carousel */
+ }
+ 
+ /* Remove any padding/margin from body and html */
+ body, html {
+     margin: 0;
+     padding: 0;
+ }
+ .logo{
+     margin-left: 200px;
+ }
+ 
 
 
