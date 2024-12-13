@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `hotelapp`
+-- Database: `hotel`
 --
 
 -- --------------------------------------------------------
@@ -76,14 +76,12 @@ CREATE TABLE `migrations` (
 --
 
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-(3, '2014_10_12_200000_add_two_factor_columns_to_users_table', 1),
-(4, '2019_08_19_000000_create_failed_jobs_table', 1),
-(5, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(6, '2023_10_18_155428_create_sessions_table', 1),
-(7, '2023_10_20_142754_create_features_table', 1),
-(8, '2023_10_20_152123_add_agent_involved_to_features', 1);
+(7, '2014_10_12_000000_create_users_table', 1),
+(8, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+(9, '2014_10_12_200000_add_two_factor_columns_to_users_table', 1),
+(10, '2019_08_19_000000_create_failed_jobs_table', 1),
+(11, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+(12, '2024_12_12_204805_create_sessions_table', 1);
 
 -- --------------------------------------------------------
 
@@ -136,7 +134,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('NWiXpEfGfQ2Nk6Nckw6h2QVu3pwLuQgcOveeramp', 1, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiVVhGbWxRaUd2Q3JnRGZnMG9uUXN0VmFXN1pvQUpEeUdXSkdoUVhiViI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9kYXNoYm9hcmQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO3M6MjE6InBhc3N3b3JkX2hhc2hfc2FuY3R1bSI7czo2MDoiJDJ5JDEwJElWOHRIaW8xaVpJdGZGeFdFZk5odE9WUVdFOG1kYThDN213Z3c1YnBtUnl1bFJEdTlkTU9PIjt9', 1734033214);
+('O9dKUFLr9lgwTMlxgaCXfJIIj5zrgGopMjxxQUL5', NULL, '127.0.0.1', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', 'YTozOntzOjY6Il90b2tlbiI7czo0MDoib0tFd3VyRjliRU5OZmtyajV5ck5NVHVDalF6R0JEZzhVQ3NtNlF1QyI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MjE6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMCI7fX0=', 1734044731);
 
 -- --------------------------------------------------------
 
@@ -148,6 +146,8 @@ CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `usertype` varchar(255) NOT NULL DEFAULT 'user',
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `two_factor_secret` text DEFAULT NULL,
@@ -164,8 +164,9 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
-(1, 'Muchiri Kinyua', 'muchiri.kinyua6564@gmail.com', NULL, '$2y$10$IV8tHio1iZItfFxWEfNhtOVQWE8mda8C7mwgw5bpmRyulRDu9dMOO', NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-12 16:53:34', '2024-12-12 16:53:34');
+INSERT INTO `users` (`id`, `name`, `email`, `phone`, `usertype`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`) VALUES
+(1, 'Muchiri Kinyua', 'muchiri.kinyua6564@gmail.com', '+254713030677', 'user', NULL, '$2y$12$biKFz4F0IFGalenaXpR7heMWFn.rOmtzFAlyHdmEvj.iXrY3I8Vc2', NULL, NULL, NULL, 'moPyEqVptRTNaAkzy0SDenGYkkTmmwLyl107dtHg57iim7rQ1ru9qAZGjX1N', NULL, NULL, '2024-12-12 18:09:23', '2024-12-12 18:09:23'),
+(5, 'admin', 'admin@gmail.com', 'admin@gmail.com', 'admin', NULL, '$2y$12$5/v/SByXGq7Wpi/4I0sfce3CWUrkXOiPu67Xl4egfzOWT07ND7IS.', NULL, NULL, NULL, NULL, NULL, NULL, '2024-12-12 19:16:42', '2024-12-12 19:16:42');
 
 --
 -- Indexes for dumped tables
@@ -239,7 +240,7 @@ ALTER TABLE `features`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -251,7 +252,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
