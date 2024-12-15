@@ -1,7 +1,6 @@
-# Phase-5-Capstone-Project
 # HOTEL BOOKING AND CANCELLATION SYSTEM
 
-![How-to-Cancel-Hotel-Reservation-on-Booking](https://github.com/MuchiriKinyua/Phase-5-Capstone-Project/assets/113877377/d3f25dff-c1d5-4a63-9cb7-aef9bb7d07ee)
+![Screenshot from 2024-12-15 15-41-06](https://github.com/user-attachments/assets/949812d7-6975-48bc-91f0-b7f6e3940e4d)
 
 ## Overview
 This project aims to analyze hotel booking data to understand and predict factors influencing cancellations. With a focus on City and Resort Hotels, the goal is to identify patterns and provide recommendations to mitigate cancellation risks. The predictive model developed will enhance revenue stability by recognizing seasonal trends, analyzing waiting times, and enabling personalized loyalty programs. Ultimately, the project seeks to optimize booking processes and contribute to increased profitability in the hotel industry.
