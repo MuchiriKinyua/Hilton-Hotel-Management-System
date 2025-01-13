@@ -11,12 +11,13 @@ class AdminController extends Controller
 {
     public function index()
     {
-        if (Auth::check()) {  // Better check if user is authenticated
+        if (Auth::id()) {
             $usertype = Auth::user()->usertype;
 
             if ($usertype == 'user') {
-                return view('home.index');
-            } elseif ($usertype == 'admin') {
+                $room = Room::all();
+                return view('home.index', compact('room'));
+            } else if ($usertype == 'admin') {
                 return view('admin.index');
             } else {
                 return redirect()->back();
@@ -41,9 +42,11 @@ class AdminController extends Controller
 
     return redirect()->route('user.index')->with('success', 'User updated successfully.');
 }
-    public function home(){
-        return view('home.index');
-    }
+public function home()
+{
+    $room = Room::all(); 
+    return view('home.index', compact('room')); 
+}
     public function create_room(){
         return view('admin.create_room');
     }
@@ -61,7 +64,7 @@ class AdminController extends Controller
             $data -> image=$imagename;
         }
         $data->save();
-        return redirect()->back();
+        return redirect()->route('view_room')->with('success', 'Room updated successfully.');
     }
     public function view_room(){
         $data = Room::all();
