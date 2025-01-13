@@ -6,7 +6,7 @@
                 <div class="full">
                     <div class="center-desk">
                         <div class="logo" style="margin-top: -15px;">
-                            <a href="index.html"><img src="images/hilton.jpg" alt="#" /></a>
+                            <a href="{{url('/')}}"><img src="images/hilton.jpg" alt="#" /></a>
                         </div>
                     </div>
                 </div>
@@ -21,7 +21,7 @@
                     <div class="collapse navbar-collapse" id="navbarsExample04">
                         <ul class="navbar-nav mr-auto" style="margin-left: 0;">
                             <li class="nav-item active">
-                                <a class="nav-link" href="index.html">Home</a>
+                                <a class="nav-link" href="{{url('/')}}">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="about.html">About</a>
