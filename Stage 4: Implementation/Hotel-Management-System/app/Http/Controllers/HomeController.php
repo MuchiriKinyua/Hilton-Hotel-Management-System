@@ -30,16 +30,27 @@ class HomeController extends Controller
         $data->email = $request->email;
         $data->phone = $request->phone;
         $data->amount = $request->amount;
-        $data->start_date = $request->startDate;
-        $data->end_date = $request->endDate;
-        $data->save();
+        $startDate = $request->startDate;
+        $endDate = $request->endDate;
+        $isBooked = Booking::where('room_id', $id)
+        ->where('start_date', '<=', $endDate)
+        ->where('end_date', '>=', $startDate)->exists();
 
-        return redirect()->back()->with('message', 'Room Booked successfully');
+        if ($isBooked){
+            return redirect()->back()->with('message', 'Room already booked! Please try a diiferent room.');
+        }
+        else{
+            $data->start_date = $request->startDate;
+            $data->end_date = $request->endDate;
+            $data->save();
+    
+            return redirect()->back()->with('message', 'Room Booked successfully');
+        }
     }
 
    public function token(){
-    $consumerKey = 'QAhtpLgSo7Rf9nfM6bG0K0HtrCgy07Pp8ovroNkyCuhMmtB9';
-    $consumerSecret = 'd34b7XJnwRn4RMYgZEyIpwCaS0ZGYYiXGGFd7kCklHyw1ydQcobwZbWuV2EXEAqJ';
+    $consumerKey = 'lQCCDsJxL1LK8Ljl27RrjkwjelfCEoZUOIYI5XH0jL1Veklb';
+    $consumerSecret = 'AqODG8iQ4D4K2oBI5QGVmrxLQDRkKnM8BgfOjdDIBrM6pr2nE8WW22lS0HxZFfTP';
     $url = 'https://api.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials';
 
     $response=Http::withBasicAuth($consumerKey,$consumerSecret)->get($url);
@@ -51,7 +62,7 @@ class HomeController extends Controller
     $accessToken = $this->token();
     $url = 'https://api.safaricom.co.ke/mpesa/stkpush/v1/processrequest';
     $PassKey = '1bf235dc92b21a2921665f672c11a4bb99905589a710f819ae230d5b4f008c60';
-    $BusinessShortCode = 6544046;
+    $BusinessShortCode = 600986;
     $Timestamp = Carbon::now()->format('YmdHis');
     $password = base64_encode($BusinessShortCode . $PassKey . $Timestamp);
     $TransactionType = 'CustomerBuyGoodsOnline';
