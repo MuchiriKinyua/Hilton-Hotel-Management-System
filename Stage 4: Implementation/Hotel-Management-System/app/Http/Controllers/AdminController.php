@@ -113,4 +113,18 @@ public function home()
     public function prediction(){
         return view('admin.prediction');
     }
+    public function approve_book($id)
+    {
+        $booking = Booking::find($id);
+        $booking -> status='approved';
+        $booking -> save();
+        return redirect()->back();
+    }
+    public function reject_book($id)
+    {
+        $booking = Booking::find($id);
+        $booking -> status='rejected';
+        $booking -> save();
+        return redirect()->back();
+    }
 }

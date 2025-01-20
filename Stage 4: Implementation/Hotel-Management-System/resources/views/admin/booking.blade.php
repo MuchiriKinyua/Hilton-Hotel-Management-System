@@ -7,7 +7,7 @@
         {
             border: 2px solid white;
             margin: auto;
-            width: 70%;
+            width: 75%;
             text-align: center;
             margin-top: 40px;
         }
@@ -46,7 +46,9 @@
                 <th class="th_deg">Leaving Date</th>
                 <th class="th_deg">Status</th>
                 <th class="th_deg">Image</th>
-                <th class="th_deg">Delete</th>
+                <th class="th_deg">Action</th>
+                <th class="th_deg">Remove Booking</th>
+                
             </tr>
             
             @foreach($data as $data)
@@ -58,12 +60,40 @@
                 <td>{{$data->amount}}</td>
                 <td>{{$data->start_date}}</td>
                 <td>{{$data->end_date}}</td>
-                <td>{{$data->status}}</td>
+                <td>
+
+                  @if($data->status == 'approved')
+
+                  <span style="color: skyblue;">Approved</span>
+
+                  @endif
+
+                  @if($data->status == 'rejected')
+
+                  <span style="color: red;">Rejected</span>
+
+                  @endif
+
+                  @if($data->status == 'waiting')
+
+                  <span style="color: yellow;">Waiting</span>
+
+                  @endif
+
+                </td>
                 <td>
                   <img style="width: 50, height: 50" src="/room/{{$data->room->image}}">
                 </td>
                 <td>
-                  <a onclick = "return confirm('Are you sure you want to delete this booking?');" 
+                <span style="padding-bottom: 10px;">
+                  <a class="btn btn-secondary" href="{{url('approve_book', $data->id)}}" 
+                  style="width: 80px; display: flex; justify-content: center;">Approve</a> 
+                </span>
+                  <a class="btn btn-warning" href="{{url('reject_book', $data->id)}}" 
+                  style="width: 80px;">Reject</a>
+                </td>
+                <td>
+                  <a onclick = "return confirm('Are you sure you want to delete this booking?');"
                   class="btn btn-danger" href="{{url('delete_booking', $data->id)}}">Delete</a>
                 </td>
             </tr>
