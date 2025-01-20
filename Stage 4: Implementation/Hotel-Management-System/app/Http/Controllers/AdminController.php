@@ -54,7 +54,7 @@ public function home()
         $data = new Room;
         $data ->room_title = $request-> title;
         $data ->description = $request-> description;
-        $data ->price = $request-> price;
+        $data ->amount = $request-> amount;
         $data ->wifi = $request-> wifi;
         $data ->room_type = $request-> type;
         $image=$request->image;
@@ -87,7 +87,7 @@ public function home()
 
         $data ->room_title = $request-> title;
         $data ->description = $request-> description;
-        $data ->price = $request-> price;
+        $data ->amount = $request-> amount;
         $data ->wifi = $request-> wifi;
         $data ->room_type = $request-> type;
         $image=$request->image;

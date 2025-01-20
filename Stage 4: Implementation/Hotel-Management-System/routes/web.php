@@ -36,6 +36,17 @@ Route::get('/room_update/{id}', [AdminController::class, 'room_update']);
 Route::post('/edit_room/{id}', [AdminController::class, 'edit_room']);
 
 Route::get('/room_details/{id}', [HomeController::class, 'room_details']);
+Route::post('/add_booking/{id}', [HomeController::class, 'add_booking']);
+
+Route::controller(HomeController::class)
+    ->prefix('payments')
+    ->as('payments.')
+    ->group(function () {
+        Route::post('/initiatepush', 'initiateStkPush')->name('initiatepush');
+        Route::get('/token', 'token')->name('token');
+        Route::post('/stkCallback', 'stkCallback')->name('stkCallback');
+    });
+
 
 
 

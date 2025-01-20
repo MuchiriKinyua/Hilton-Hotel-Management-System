@@ -2,6 +2,9 @@
 <html lang="en">
    <head>
 @include('home.css')
+<link rel="stylesheet" href="{{ asset('css/stylechat.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+<script src="{{ asset('js/script.js') }}" defer></script>
    </head>
    <!-- body -->
    <body class="main-layout">
@@ -37,5 +40,7 @@
       <!--  footer -->
       <footer>
       @include('home.footer')
+      <!-- chatbot -->
+      @include('home.chatbot')
    </body>
 </html>

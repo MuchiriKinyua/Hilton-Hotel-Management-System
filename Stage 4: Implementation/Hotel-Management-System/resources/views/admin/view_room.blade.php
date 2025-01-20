@@ -40,7 +40,7 @@
             <tr>
                 <th class="th_deg">Room Title</th>
                 <th class="th_deg">Description</th>
-                <th class="th_deg">Price</th>
+                <th class="th_deg">Amount</th>
                 <th class="th_deg">Wifi</th>
                 <th class="th_deg">Room Type</th>
                 <th class="th_deg">Image</th>
@@ -53,7 +53,7 @@
             <tr>
                 <td>{{$data->room_title}}</td>
                 <td>{!! Str::limit($data->description, 150) !!}</td>
-                <td>{{$data->price}} Ksh</td>
+                <td>{{$data->amount}} Ksh</td>
                 <td>{{$data->wifi}}</td>
                 <td>{{$data->room_type}}</td>
                 <td>

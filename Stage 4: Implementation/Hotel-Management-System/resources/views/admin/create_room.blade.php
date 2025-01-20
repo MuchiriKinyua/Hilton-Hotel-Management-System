@@ -55,8 +55,8 @@
                 <textarea name="description"></textarea>
             </div>
             <div class="div_deg">
-                <label>Price</label>
-                <input type="number" name="price">
+                <label>Amount</label>
+                <input type="number" name="amount">
             </div>
             <div class="div_deg">
                 <label>Room Type</label>

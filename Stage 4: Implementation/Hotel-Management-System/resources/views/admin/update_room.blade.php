@@ -58,8 +58,8 @@
                 <textarea name="description">{{$data->description}}</textarea>
             </div>
             <div class="div_deg">
-                <label>Price</label>
-                <input type="number" name="price" value="{{$data->price}}">
+                <label>Amount</label>
+                <input type="number" name="amount" value="{{$data->amount}}">
             </div>
             <div class="div_deg">
                 <label>Room Type</label>
