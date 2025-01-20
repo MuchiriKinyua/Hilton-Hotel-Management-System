@@ -1,3 +1,4 @@
+
 <div class="d-flex align-items-stretch">
       <!-- Sidebar Navigation-->
       <nav id="sidebar">
@@ -17,6 +18,13 @@
                     <li><a href="{{url('create_room')}}">Add Rooms</a></li>
                     <li><a href="{{url('view_room')}}">View Rooms</a></li>
                   </ul>
+                </li>
+
+                <li>
+                <a href="{{url('bookings')}}"> <i class="fa-solid fa-hotel"></i>Bookings</a>
+                </li>
+                <li>
+                <a href="{{url('prediction')}}"> <i class="icon-home"></i> Prediction</a>
                 </li>
 
 

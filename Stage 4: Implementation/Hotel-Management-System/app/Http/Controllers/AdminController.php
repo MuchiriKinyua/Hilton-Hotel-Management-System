@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Room;
+use App\Models\Booking;
 
 class AdminController extends Controller
 {
@@ -99,5 +100,17 @@ public function home()
         $data -> save();
 
         return redirect()->route('view_room')->with('success', 'Room updated successfully.');
+    }
+    public function bookings(){
+        $data=Booking::all();
+        return view('admin.booking', compact('data'));
+    }
+    public function delete_booking($id){
+        $data=Booking::find($id);
+        $data->delete();
+        return redirect()->back();
+    }
+    public function prediction(){
+        return view('admin.prediction');
     }
 }
