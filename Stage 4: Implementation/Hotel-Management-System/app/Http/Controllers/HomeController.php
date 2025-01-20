@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Http;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Room;
 use App\Models\Booking;
@@ -107,5 +109,43 @@ class HomeController extends Controller
     } catch (Throwable $e) {
         return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
     }
+}
+public function stkCallback() {
+    $data=file_get_contents('php://input');
+    Storage::disk('local')->put('stk.txt',$data);
+
+    $response=json_decode($data);
+
+    $ResultCode=$response->Body->stkCallback->ResultCode;
+
+    if($ResultCode==0){
+        $MerchantRequestID=$response->Body->stkCallback->MerchantRequestID;
+        $CheckoutRequestID=$response->Body->stkCallback->CheckoutRequestID;
+        $ResultDesc=$response->Body->stkCallback->ResultDesc;
+        $Amount=$response->Body->stkCallback->CallbackMetadata->Item[0]->Value;
+        $MpesaReceiptNumber=$response->Body->stkCallback->CallbackMetadata->Item[1]->Value;
+        //$Balance=$response->Body->stkCallback->CallbackMetadata->Item[2]->Value;
+        $TransactionDate=$response->Body->stkCallback->CallbackMetadata->Item[3]->Value;
+        $PhoneNumber=$response->Body->stkCallback->CallbackMetadata->Item[4]->Value;
+
+        $payment=STKrequests::where('CheckoutRequestID',$CheckoutRequestID)->firstOrfail();
+        $payment->status='Paid';
+        $payment->TransactionDate=$TransactionDate;
+        $payment->MpesaReceiptNumber=$MpesaReceiptNumber;
+        $payment->ResultDesc=$ResultDesc;
+        $payment->save();
+
+    }else{
+
+    $CheckoutRequestID=$response->Body->stkCallback->CheckoutRequestID;
+    $ResultDesc=$response->Body->stkCallback->ResultDesc;
+    $payment=STKrequest::where('CheckoutRequestID',$CheckoutRequestID)->firstOrfail();
+    
+    $payment->ResultDesc=$ResultDesc;
+    $payment->status='Failed';
+    $payment->save();
+
+    }
+
 }
 }

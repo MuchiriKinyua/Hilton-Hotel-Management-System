@@ -4,17 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', [AdminController::class, 'home']);
 Route::get('/home', [AdminController::class, 'index'])->name('home');
 
@@ -39,8 +28,8 @@ Route::get('/room_details/{id}', [HomeController::class, 'room_details']);
 Route::post('/add_booking/{id}', [HomeController::class, 'add_booking']);
 
 Route::controller(HomeController::class)
-    ->prefix('payments')
-    ->as('payments.')
+    ->prefix('add_booking')
+    ->as('add_booking.')
     ->group(function () {
         Route::post('/initiatepush', 'initiateStkPush')->name('initiatepush');
         Route::get('/token', 'token')->name('token');
