@@ -110,9 +110,7 @@ public function home()
         $data->delete();
         return redirect()->back();
     }
-    public function prediction(){
-        return view('admin.prediction');
-    }
+
     public function approve_book($id)
     {
         $booking = Booking::find($id);
@@ -127,4 +125,22 @@ public function home()
         $booking -> save();
         return redirect()->back();
     }
+
+    public function prediction()
+    {
+         $data = $request->all();
+
+         $data->market_segment = $request->market_segment;
+         $data->distribution_channel = $request->distribution_channel;
+         $data->is_repeated_guest = $request->is_repeated_guest;
+         $data->deposit_type = $request->deposit_type;
+         $data->customer_type = $request->customer_type;
+         $data->has_special_requests = $request->has_special_requests;
+         $data->reserved_is_assigned = $request->reserved_is_assigned;
+         $data->agent_involved = $request->agent_involved;
+ 
+         $prediction = $this->machineLearningService->makeGradientBoostPrediction($data);
+ 
+         return view('admin.prediction');
+     }
 }

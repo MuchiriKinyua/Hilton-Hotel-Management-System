@@ -16,7 +16,15 @@ class Booking extends Model
         'phone',
         'amount',
         'start_date',
-        'end_date'
+        'end_date',
+        'market_segment',
+        'distribution_channel',
+        'is_repeated_guest',
+        'deposit_type',
+        'customer_type',
+        'has_special_requests',
+        'reserved_is_assigned',
+        'agent_involved'
     ];
 
     public function room(){

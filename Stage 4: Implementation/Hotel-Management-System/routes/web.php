@@ -31,6 +31,7 @@ Route::get('/delete_booking/{id}', [AdminController::class, 'delete_booking']);
 Route::get('/approve_book/{id}', [AdminController::class, 'approve_book']);
 Route::get('/reject_book/{id}', [AdminController::class, 'reject_book']);
 Route::get('/prediction', [AdminController::class, 'prediction']);
+Route::post('/predict', [HomeController::class, 'predict'])->name('predict');
 
 Route::controller(HomeController::class)
     ->prefix('add_booking')

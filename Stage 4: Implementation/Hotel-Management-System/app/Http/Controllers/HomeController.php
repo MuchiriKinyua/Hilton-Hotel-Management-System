@@ -16,15 +16,23 @@ class HomeController extends Controller
 
         return view('home.room_details', compact('room'));
     }
-    public function add_booking(Request $request, $id){
-        
+    public function add_booking(Request $request, $id)
+    {
         $request->validate([
             'startDate' => 'required|date',
-            'endDate' => 'date|after:startDate'
+            'endDate' => 'nullable|date|after:startDate',
+            'market_segment' => 'nullable|string',
+            'distribution_channel' => 'nullable|string',
+            'is_repeated_guest' => 'nullable|string',
+            'deposit_type' => 'nullable|string',
+            'customer_type' => 'nullable|string',
+            'has_special_requests' => 'nullable|string',
+            'reserved_is_assigned' => 'nullable|string',
+            'agent_involved' => 'nullable|string',
         ]);
-
+    
         $data = new Booking;
-
+    
         $data->room_id = $id;
         $data->name = $request->name;
         $data->email = $request->email;
@@ -32,14 +40,24 @@ class HomeController extends Controller
         $data->amount = $request->amount;
         $startDate = $request->startDate;
         $endDate = $request->endDate;
+    
         $isBooked = Booking::where('room_id', $id)
-        ->where('start_date', '<=', $endDate)
-        ->where('end_date', '>=', $startDate)->exists();
-
-        if ($isBooked){
-            return redirect()->back()->with('message', 'Room already booked! Please try a diiferent room.');
-        }
-        else{
+            ->where('start_date', '<=', $endDate)
+            ->where('end_date', '>=', $startDate)
+            ->exists();
+    
+        $data->market_segment = $request->market_segment;
+        $data->distribution_channel = $request->distribution_channel;
+        $data->is_repeated_guest = $request->is_repeated_guest;
+        $data->deposit_type = $request->deposit_type;
+        $data->customer_type = $request->customer_type;
+        $data->has_special_requests = $request->has_special_requests;
+        $data->reserved_is_assigned = $request->reserved_is_assigned;
+        $data->agent_involved = $request->agent_involved;
+    
+        if ($isBooked) {
+            return redirect()->back()->with('message', 'Room already booked! Please try a different room.');
+        } else {
             $data->start_date = $request->startDate;
             $data->end_date = $request->endDate;
             $data->save();
@@ -47,6 +65,7 @@ class HomeController extends Controller
             return redirect()->back()->with('message', 'Room Booked successfully');
         }
     }
+    
 
    public function token(){
     $consumerKey = 'lQCCDsJxL1LK8Ljl27RrjkwjelfCEoZUOIYI5XH0jL1Veklb';

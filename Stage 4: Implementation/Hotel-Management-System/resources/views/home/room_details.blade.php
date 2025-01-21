@@ -10,13 +10,24 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 
 <script src="{{ asset('js/script.js') }}" defer></script>
 <style type="text/css">
-   label{
-      display: inline-block;
-      width: 200px;
-   }
-   input{
-      width: 100%;
-   }
+label {
+    display: inline-block;
+    width: 200px;
+    white-space: nowrap;
+}
+
+label::after {
+    content: ' (optional)';
+    font-size: 0.9em; /* Adjust the font size if necessary */
+    color: gray;      /* Optional: Set a lighter color for optional text */
+    visibility: hidden; /* Initially hidden */
+}
+
+select[required] + label::after,
+input[required] + label::after {
+    visibility: visible; /* Make it visible only for optional fields */
+}
+
 </style>
    </head>
    <!-- body -->
@@ -87,46 +98,126 @@ integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEw
 
          <form action="{{url('add_booking', $room->id)}}" method="Post">
 
-               @csrf 
+@csrf 
 
-         <div>
-            <label>Name</label>
-            <input type="text" name="name"
-            @if(Auth::id()) 
-            value="{{Auth::user()->name}}"
-            @endif>
-         </div>
-         <div>
-            <label>email</label>
-            <input type="email" name="email"
-            @if(Auth::id()) 
-            value="{{Auth::user()->email}}"
-            @endif>
-         </div>
-         <div>
-            <label>phone</label>
-            <input type="number" name="phone"
-            @if(Auth::id()) 
-            value="{{Auth::user()->phone}}"
-            @endif>
-         </div>
-         <div>
-            <label>amount</label>
-            <input type="number" name="amount" value="{{ $room->amount }}" readonly>
-         </div>
-         <div>
-            <label>Start Date</label>
-            <input type="date" name="startDate" id="startDate">
-         </div>
-         <div>
-            <label>End Date</label>
-            <input type="date" name="endDate" id="endDate">
-         </div>
-         <div style="padding-top: 20px;">
-            <input type="submit" class="btn btn-primary" value="Book Room">
-         </div>
+<div> 
+    <label>Name</label> 
+    <input type="text" name="name" 
+    @if(Auth::id())  
+    value="{{Auth::user()->name}}" 
+    @endif 
+    class="form-control"> 
+</div> 
+<div> 
+    <label>Email</label> 
+    <input type="email" name="email" 
+    @if(Auth::id())  
+    value="{{Auth::user()->email}}" 
+    @endif 
+    class="form-control"> 
+</div> 
+<div> 
+    <label>Phone</label> 
+    <input type="number" name="phone" 
+    @if(Auth::id())  
+    value="{{Auth::user()->phone}}" 
+    @endif 
+    class="form-control"> 
+</div> 
+<div> 
+    <label>Amount</label> 
+    <input type="number" name="amount" value="{{ $room->amount }}" readonly class="form-control"> 
+</div> 
+<div> 
+    <label>Start Date</label> 
+    <input type="date" name="startDate" id="startDate" class="form-control"> 
+</div> 
+<div> 
+    <label>End Date</label> 
+    <input type="date" name="endDate" id="endDate" class="form-control"> 
+</div> 
 
-         </form>
+<div> 
+    <label>Market Segment (optional)</label> 
+    <select id="market_segment" name="market_segment" required class="form-control"> 
+        <option value="Direct">Direct</option> 
+        <option value="Corporate">Corporate</option> 
+        <option value="Online TA">Online TA</option> 
+        <option value="Offline TATO">Offline TATO</option> 
+        <option value="Complementary">Complementary</option> 
+        <option value="Groups">Groups</option> 
+        <option value="Undefined">Undefined</option> 
+        <option value="Aviation">Aviation</option> 
+    </select> 
+</div> 
+
+<div> 
+    <label>Distribution Channel (optional)</label> 
+    <select id="distribution_channel" name="distribution channel" required class="form-control"> 
+        <option value="Direct">Direct</option> 
+        <option value="Corporate">Corporate</option> 
+        <option value="TATO">TATO</option> 
+        <option value="GDS">GDS</option> 
+        <option value="Undefined">Undefined</option> 
+    </select> 
+</div> 
+
+<div> 
+    <label>Are you a Repeated Guest (optional)</label> 
+    <select id="is_repeated_guest" name="is_repeated_guest" required class="form-control"> 
+        <option value="Yes">Yes</option> 
+        <option value="No">No</option> 
+    </select> 
+</div> 
+
+<div> 
+    <label>Deposit Type (optional)</label> 
+    <select id="deposit_type" name="deposit_type" required class="form-control"> 
+        <option value="No deposit">No deposit</option> 
+        <option value="Refundable">Refundable</option> 
+        <option value="Non Refund">Non Refund</option> 
+    </select> 
+</div> 
+
+<div> 
+    <label>Customer Type (optional)</label> 
+    <select id="customer_type" name="customer_type" required class="form-control"> 
+        <option value="Transient">Transient</option> 
+        <option value="Contract">Contract</option> 
+        <option value="Transientparty">Transient party</option> 
+        <option value="Group">Group</option> 
+    </select> 
+</div> 
+
+<div> 
+    <label>VIP status? (optional)</label> 
+    <select id="has_special_requests" name="has_special_requests" class="form-control"> 
+        <option value="yes">Yes</option> 
+        <option value="no">No</option> 
+    </select> 
+</div> 
+
+<div> 
+    <label>Reserved is Assigned (optional)</label> 
+    <select id="reserved_is_assigned" name="reserved_is_assigned" class="form-control"> 
+        <option value="yes">Yes</option> 
+        <option value="no">No</option> 
+    </select> 
+</div> 
+
+<div> 
+    <label>Were you assisted by an agent (optional)</label> 
+    <select id="agent_involved" name="agent_involved" class="form-control"> 
+        <option value="yes">Yes</option> 
+        <option value="no">No</option> 
+    </select> 
+</div> 
+
+     <div style="padding-top: 20px;">
+        <input type="submit" class="btn btn-primary" value="Book Room">
+     </div>
+
+</form>
 
       </div>
 
