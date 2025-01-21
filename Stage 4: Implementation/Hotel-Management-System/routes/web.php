@@ -27,6 +27,7 @@ Route::get('/room_details/{id}', [HomeController::class, 'room_details']);
 Route::post('/add_booking/{id}', [HomeController::class, 'add_booking']);
 Route::get('/bookings', [AdminController::class, 'bookings']);
 Route::get('/view_gallery', [AdminController::class, 'view_gallery']);
+Route::get('/view_messages', [AdminController::class, 'view_messages']);
 Route::post('/upload_gallery', [AdminController::class, 'upload_gallery']);
 Route::get('/delete_gallery/{id}', [AdminController::class, 'delete_gallery']);
 Route::post('/contact', [HomeController::class, 'contact']);

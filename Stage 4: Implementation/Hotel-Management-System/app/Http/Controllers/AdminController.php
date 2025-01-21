@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Room;
 use App\Models\Gallery;
 use App\Models\Booking;
+use App\Models\Contact;
 
 class AdminController extends Controller
 {
@@ -166,6 +167,14 @@ public function home()
 
         return redirect()->back();
     }
+
+    public function view_messages()
+    {
+        $data = contact::all();
+
+        return view('admin.view_messages', compact('data'));
+    }
+
     public function prediction()
     {
          return view('admin.prediction');
