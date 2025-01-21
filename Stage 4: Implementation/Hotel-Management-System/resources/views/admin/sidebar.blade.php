@@ -24,6 +24,9 @@
                 <a href="{{url('bookings')}}"> <i class="fa-solid fa-hotel"></i>Bookings</a>
                 </li>
                 <li>
+                <a href="{{url('view_gallery')}}"> <i class="fa-solid fa-hotel"></i>Gallery</a>
+                </li>
+                <li>
                 <a href="{{url('prediction')}}"> <i class="icon-home"></i> Prediction</a>
                 </li>
 

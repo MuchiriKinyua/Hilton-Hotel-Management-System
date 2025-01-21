@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Room;
+use App\Models\Gallery;
 use App\Models\Booking;
 
 class AdminController extends Controller
@@ -126,21 +127,41 @@ public function home()
         return redirect()->back();
     }
 
+    public function view_gallery()
+    {
+        $gallery = Gallery::all();
+
+        return view('admin.gallery', compact('gallery'));
+    }
+    public function upload_gallery(Request $request)
+    {
+        $data = new Gallery;
+
+        $image = $request->image;
+
+        if($image){
+            $imagename = time().'.'.$image->getClientOriginalExtension();
+
+            $request->image->move('gallery', $imagename);
+
+            $data->image = $imagename;
+
+            $data->save();
+
+            return redirect()->back();
+        }
+    }
+
+    public function delete_gallery($id)
+    {
+        $data = Gallery::find($id);
+
+        $data->delete();
+
+        return redirect()->back();
+    }
     public function prediction()
     {
-         $data = $request->all();
-
-         $data->market_segment = $request->market_segment;
-         $data->distribution_channel = $request->distribution_channel;
-         $data->is_repeated_guest = $request->is_repeated_guest;
-         $data->deposit_type = $request->deposit_type;
-         $data->customer_type = $request->customer_type;
-         $data->has_special_requests = $request->has_special_requests;
-         $data->reserved_is_assigned = $request->reserved_is_assigned;
-         $data->agent_involved = $request->agent_involved;
- 
-         $prediction = $this->machineLearningService->makeGradientBoostPrediction($data);
- 
          return view('admin.prediction');
      }
 }
