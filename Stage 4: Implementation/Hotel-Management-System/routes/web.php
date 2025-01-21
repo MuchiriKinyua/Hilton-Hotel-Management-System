@@ -31,6 +31,8 @@ Route::get('/view_messages', [AdminController::class, 'view_messages']);
 Route::post('/upload_gallery', [AdminController::class, 'upload_gallery']);
 Route::get('/delete_gallery/{id}', [AdminController::class, 'delete_gallery']);
 Route::post('/contact', [HomeController::class, 'contact']);
+Route::get('/send_mail/{id}', [AdminController::class, 'send_mail']);
+Route::post('/mail/{id}', [AdminController::class, 'mail']);
 Route::get('/delete_booking/{id}', [AdminController::class, 'delete_booking']);
 Route::get('/approve_book/{id}', [AdminController::class, 'approve_book']);
 Route::get('/reject_book/{id}', [AdminController::class, 'reject_book']);
