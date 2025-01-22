@@ -23,7 +23,7 @@ def keras_prediction(features, model):
 # Root route to serve the HTML form
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    return render_template('indexn.html')
 
 # Route to handle Keras prediction
 @app.route('/predict_keras_model', methods=['POST'])

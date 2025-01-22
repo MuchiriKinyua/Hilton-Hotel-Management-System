@@ -15,7 +15,7 @@ def knn_prediction(features, model):
 # Root route to serve the HTML form
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    return render_template('indexk.html')
 
 # Route to handle KNN prediction
 @app.route('/predict_knn_model', methods=['POST'])

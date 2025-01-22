@@ -54,7 +54,7 @@ def hotel_prediction(features, model):
 # Root route
 @app.route('/', methods=['GET'])
 def index():
-    return render_template('index.html')
+    return render_template('indexg.html')
 
 
 # Gradient Boost route
