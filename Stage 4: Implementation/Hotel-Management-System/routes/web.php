@@ -26,6 +26,7 @@ Route::post('/edit_room/{id}', [AdminController::class, 'edit_room'])->middlewar
 Route::get('/room_details/{id}', [HomeController::class, 'room_details']);
 Route::post('/add_booking/{id}', [HomeController::class, 'add_booking']);
 Route::get('/bookings', [AdminController::class, 'bookings'])->middleware(['auth', 'admin']);
+Route::get('/transactions', [AdminController::class, 'transactions'])->middleware(['auth', 'admin']);
 Route::get('/view_gallery', [AdminController::class, 'view_gallery'])->middleware(['auth', 'admin']);
 Route::get('/view_messages', [AdminController::class, 'view_messages'])->middleware(['auth', 'admin']);
 Route::post('/upload_gallery', [AdminController::class, 'upload_gallery'])->middleware(['auth', 'admin']);

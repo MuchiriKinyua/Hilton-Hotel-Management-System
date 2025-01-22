@@ -200,6 +200,11 @@ public function home()
         return redirect()->back();
     }
 
+    public function transactions()
+    {
+        return view('admin.transactions');
+    }
+
     public function prediction()
     {
          return view('admin.prediction');
