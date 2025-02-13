@@ -8,8 +8,10 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Room;
 use App\Models\Gallery;
 use App\Models\Booking;
+use Illuminate\Support\Str;
 use App\Models\Contact;
 use Notification;
+use App\Models\Housekeeping;
 use App\Notifications\MyFirstNotification;
 
 class AdminController extends Controller
@@ -61,56 +63,60 @@ public function home()
     public function create_room(){
         return view('admin.create_room');
     }
-    public function add_room(Request $request){
+    public function add_room(Request $request)
+    {
         $data = new Room;
-        $data ->room_title = $request-> title;
-        $data ->description = $request-> description;
-        $data ->amount = $request-> amount;
-        $data ->wifi = $request-> wifi;
-        $data ->room_type = $request-> type;
-        $image=$request->image;
-        if($image){
-            $imagename = time().'.'.$image->getClientOriginalExtension();
+        $data->id = Str::uuid(); // Generate UUID for the new room
+        $data->room_title = $request->title;
+        $data->description = $request->description;
+        $data->amount = $request->amount;
+        $data->wifi = $request->wifi;
+        $data->room_type = $request->type;
+    
+        if ($request->hasFile('image')) {
+            $imagename = time().'.'.$request->image->getClientOriginalExtension();
             $request->image->move('room', $imagename);
-            $data -> image=$imagename;
+            $data->image = $imagename;
         }
+    
         $data->save();
-        return redirect()->route('view_room')->with('success', 'Room updated successfully.');
+    
+        return redirect()->route('view_room')->with('success', 'Room created successfully.');
     }
     public function view_room(){
         $data = Room::all();
 
         return view('admin.view_room', compact('data'));
     }
-    public function room_delete($id){
-        $data = Room::find($id);
-        $data->delete();
+    public function room_delete(Room $room)
+{
+    $room->delete();
+    return redirect()->back()->with('success', 'Room deleted successfully.');
+}
 
-        return redirect()->back();
+public function room_update(Room $room)
+{
+    return view('admin.update_room', compact('room'));
+}
+
+public function edit_room(Request $request, Room $room)
+{
+    $room->room_title = $request->title;
+    $room->description = $request->description;
+    $room->amount = $request->amount;
+    $room->wifi = $request->wifi;
+    $room->room_type = $request->type;
+
+    if ($request->hasFile('image')) {
+        $imagename = time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move('room', $imagename);
+        $room->image = $imagename;
     }
-    public function room_update($id){
-        $data = Room::find($id);
 
-        return view('admin.update_room', compact('data'));
-    }
-    public function edit_room(Request $request, $id){
-        $data = Room::find($id);
+    $room->save();
 
-        $data ->room_title = $request-> title;
-        $data ->description = $request-> description;
-        $data ->amount = $request-> amount;
-        $data ->wifi = $request-> wifi;
-        $data ->room_type = $request-> type;
-        $image=$request->image;
-        if($image){
-            $imagename=time().'.'.$image->getClientOriginalExtension();
-            $request->image->move('room', $imagename);
-            $data->image=$imagename;
-        }
-        $data -> save();
-
-        return redirect()->route('view_room')->with('success', 'Room updated successfully.');
-    }
+    return redirect()->route('view_room')->with('success', 'Room updated successfully.');
+}
     public function bookings(){
         $data=Booking::all();
         return view('admin.booking', compact('data'));
@@ -204,6 +210,39 @@ public function home()
     {
         return view('admin.transactions');
     }
+
+    public function housekeeping()
+    {   
+        $housekeepingTasks = \App\Models\Housekeeping::with(['room', 'staff'])->get();
+        return view('admin.housekeeping', compact('housekeepingTasks'));
+    }    
+
+    public function createHousekeeping()
+{
+    $rooms = Room::all();
+    $staff = User::where('usertype', 'staff')->get(); // Assuming 'staff' user type
+
+    return view('admin.create_housekeeping', compact('rooms', 'staff'));
+}
+
+public function storeHousekeeping(Request $request)
+{
+    $request->validate([
+        'room_id' => 'required|exists:rooms,id',
+        'assigned_staff_id' => 'nullable|exists:users,id',
+        'cleaning_date' => 'nullable|date',
+        'completion_time' => 'nullable|date',
+        'supplies_used' => 'nullable|string',
+        'status' => 'required|in:clean,dirty,occupied,out_of_service',
+        'inspection_status' => 'required|in:pending,passed,failed',
+        'notes' => 'nullable|string',
+    ]);
+
+    Housekeeping::create($request->all());
+
+    return redirect()->route('housekeeping')->with('success', 'Housekeeping record added.');
+}
+
 
     public function prediction()
     {

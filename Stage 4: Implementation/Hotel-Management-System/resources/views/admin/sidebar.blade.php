@@ -33,6 +33,9 @@
                 <a href="{{url('view_messages')}}"> <i class="fa-solid fa-hotel"></i>Messages</a>
                 </li>
                 <li>
+                <a href="{{url('housekeeping')}}"> <i class="fa-solid fa-hotel"></i>Housekeeping</a>
+                </li>
+                <li>
                 <a href="{{url('prediction')}}"> <i class="icon-home"></i> Prediction</a>
                 </li>
 
