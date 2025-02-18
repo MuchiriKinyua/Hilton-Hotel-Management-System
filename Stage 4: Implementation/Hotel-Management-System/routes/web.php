@@ -85,7 +85,19 @@ Route::resource('predictions', App\Http\Controllers\PredictionController::class)
 Route::resource('rooms', App\Http\Controllers\RoomController::class);
 Route::resource('staff', App\Http\Controllers\StaffController::class);
 Route::resource('transactions', App\Http\Controllers\TransactionController::class);
-
 Route::resource('roles', App\Http\Controllers\RoleController::class);
 Route::resource('permissions', App\Http\Controllers\PermissionController::class);
 Route::resource('users', UserController::class);
+Route::resource('audits', App\Http\Controllers\AuditController::class);
+Route::resource('billings', App\Http\Controllers\BillingController::class);
+Route::resource('expenses', App\Http\Controllers\ExpenseController::class);
+Route::resource('invoices', App\Http\Controllers\InvoiceController::class);
+Route::resource('items', App\Http\Controllers\ItemController::class);
+Route::resource('loggeds', App\Http\Controllers\LoggedController::class);
+Route::resource('maintenances', App\Http\Controllers\MaintenanceController::class);
+Route::resource('methods', App\Http\Controllers\MethodController::class);
+Route::resource('occupations', App\Http\Controllers\OccupationController::class);
+Route::resource('reports', App\Http\Controllers\ReportController::class);
+Route::resource('stations', App\Http\Controllers\StationController::class);
+Route::resource('suppliers', App\Http\Controllers\SupplierController::class);
+Route::resource('tables', App\Http\Controllers\TableController::class);
