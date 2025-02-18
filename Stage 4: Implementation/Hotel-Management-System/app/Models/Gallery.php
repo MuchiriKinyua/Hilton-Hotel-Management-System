@@ -2,14 +2,25 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Gallery extends Model
 {
-    use HasFactory;
+    public $table = 'galleries';
 
-    protected $fillable = [
-        'image',
+    public $fillable = [
+        'image'
     ];
+
+    protected $casts = [
+        'image' => 'string'
+    ];
+
+    public static array $rules = [
+        'image' => 'nullable|string|max:255',
+        'created_at' => 'nullable',
+        'updated_at' => 'nullable'
+    ];
+
+    
 }

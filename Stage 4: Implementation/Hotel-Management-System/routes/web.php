@@ -1,61 +1,38 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\AdminController;
 
-Route::get('/', [AdminController::class, 'home']);
-Route::get('/home', [AdminController::class, 'index'])->name('home');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider and all of them will
+| be assigned to the "web" middleware group. Make something great!
+|
+*/
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified',
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+Route::get('/', function () {
+    return view('welcome');
 });
 
-Route::get('/create_room', [AdminController::class, 'create_room'])->middleware(['auth', 'admin']);
-Route::post('/add_room', [AdminController::class, 'add_room'])->middleware(['auth', 'admin']); 
-Route::get('/view_room', [AdminController::class, 'view_room'])->name('view_room')->middleware(['auth', 'admin']);
-Route::get('/room_delete/{room}', [AdminController::class, 'room_delete'])->middleware(['auth', 'admin']);
-Route::get('/room_update/{room}', [AdminController::class, 'room_update'])->middleware(['auth', 'admin']);
-Route::post('/edit_room/{room}', [AdminController::class, 'edit_room'])->middleware(['auth', 'admin']);
-Route::get('/room_details/{room}', [HomeController::class, 'room_details']);
-Route::post('/add_booking/{room}', [HomeController::class, 'add_booking']);
-Route::get('/bookings', [AdminController::class, 'bookings'])->middleware(['auth', 'admin']);
-Route::get('/transactions', [AdminController::class, 'transactions'])->middleware(['auth', 'admin']);
-Route::get('/view_gallery', [AdminController::class, 'view_gallery'])->middleware(['auth', 'admin']);
-Route::get('/view_messages', [AdminController::class, 'view_messages'])->middleware(['auth', 'admin']);
-Route::post('/upload_gallery', [AdminController::class, 'upload_gallery'])->middleware(['auth', 'admin']);
-Route::get('/delete_gallery/{id}', [AdminController::class, 'delete_gallery'])->middleware(['auth', 'admin']);
-Route::get('/housekeeping', [AdminController::class, 'housekeeping'])->name('housekeeping')->middleware(['auth', 'admin']);
-Route::get('/housekeeping/create', [AdminController::class, 'createhousekeeping'])->name('housekeeping.create')->middleware(['auth', 'admin']);
-Route::post('/housekeeping/store', [AdminController::class, 'storehousekeeping'])->name('housekeeping.store')->middleware(['auth', 'admin']);
-Route::post('/contact', [HomeController::class, 'contact']);
-Route::get('/our_rooms', [HomeController::class, 'our_rooms']);
-Route::get('/hotel_blog', [HomeController::class, 'hotel_blog']);
-Route::get('/contact_us', [HomeController::class, 'contact_us']);
-Route::get('/hotel_gallery', [HomeController::class, 'hotel_gallery']);
-Route::get('/send_mail/{id}', [AdminController::class, 'send_mail'])->middleware(['auth', 'admin'])->middleware(['auth', 'admin']);
-Route::post('/mail/{id}', [AdminController::class, 'mail'])->middleware(['auth', 'admin'])->middleware(['auth', 'admin']);
-Route::get('/delete_booking/{id}', [AdminController::class, 'delete_booking'])->middleware(['auth', 'admin']);
-Route::get('/approve_book/{id}', [AdminController::class, 'approve_book'])->middleware(['auth', 'admin']);
-Route::get('/reject_book/{id}', [AdminController::class, 'reject_book'])->middleware(['auth', 'admin']);
-Route::get('/prediction', [AdminController::class, 'prediction'])->middleware(['auth', 'admin']);
-Route::post('/predict', [HomeController::class, 'predict'])->name('predict');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::controller(HomeController::class)
-    ->prefix('add_booking')
-    ->as('add_booking.')
-    ->group(function () {
-        Route::post('/initiatepush', 'initiateStkPush')->name('initiatepush');
-        Route::get('/token', 'token')->name('token');
-        Route::post('/stkCallback', 'stkCallback')->name('stkCallback');
-    });
+Auth::routes();
 
-
-
-
+Route::resource('bookings', App\Http\Controllers\BookingController::class);
+Route::resource('contacts', App\Http\Controllers\ContactController::class);
+Route::resource('features', App\Http\Controllers\FeatureController::class);
+Route::resource('feedback', App\Http\Controllers\FeedbackController::class);
+Route::resource('galleries', App\Http\Controllers\GalleryController::class);
+Route::resource('guests', App\Http\Controllers\GuestController::class);
+Route::resource('housekeepings', App\Http\Controllers\HousekeepingController::class);
+Route::resource('inventories', App\Http\Controllers\InventoryController::class);
+Route::resource('notifications', App\Http\Controllers\NotificationController::class);
+Route::resource('orders', App\Http\Controllers\OrderController::class);
+Route::resource('payments', App\Http\Controllers\PaymentController::class);
+Route::resource('predictions', App\Http\Controllers\PredictionController::class);
+Route::resource('rooms', App\Http\Controllers\RoomController::class);
+Route::resource('staff', App\Http\Controllers\StaffController::class);
+Route::resource('transactions', App\Http\Controllers\TransactionController::class);
