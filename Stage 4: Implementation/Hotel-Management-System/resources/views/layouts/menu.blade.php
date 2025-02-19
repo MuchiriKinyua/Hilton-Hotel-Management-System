@@ -1,9 +1,38 @@
 <li class="nav-item">
     <a href="{{ route('home') }}" class="nav-link {{ Request::is('home') ? 'active' : '' }}">
         <i class="nav-icon fas fa-tachometer-alt text-purple"></i>
-        <p>Dashboard</p>
+        <p>Admin Dashboard</p>
     </a>
 </li>
+
+<li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-chart-line text-purple"></i>
+        <p>Finance Dashboard</p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-users-cog text-purple"></i>
+        <p>H.R Dashboard</p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-shopping-cart text-purple"></i>
+        <p>Sales Dashboard</p>
+    </a>
+</li>
+
+<li class="nav-item">
+    <a href="#" class="nav-link">
+        <i class="nav-icon fas fa-calendar-check text-purple"></i>
+        <p>Reservationist Dashboard</p>
+    </a>
+</li>
+
 
 <li class="nav-item has-treeview {{ Request::is('bookings*') || Request::is('guests*') || Request::is('feedback*') || Request::is('occupations*') || Request::is('contacts*') || Request::is('rooms*') || Request::is('features*') ? 'menu-open' : '' }}">
     <a href="#" class="nav-link">
