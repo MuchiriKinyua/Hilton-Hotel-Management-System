@@ -1,7 +1,7 @@
 <li class="nav-item">
     <a href="{{ route('home') }}" class="nav-link {{ Request::is('home') ? 'active' : '' }}">
         <i class="nav-icon fas fa-tachometer-alt text-purple"></i>
-        <p>Home</p>
+        <p>Dashboard</p>
     </a>
 </li>
 
@@ -33,18 +33,6 @@
             </a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('rooms.index') }}" class="nav-link {{ Request::is('rooms*') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-bed text-green"></i>
-                <p>Rooms</p>
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="{{ route('occupations.index') }}" class="nav-link {{ Request::is('occupations*') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-user-tie text-green"></i>
-                <p>Room Occupation Settings</p>
-            </a>
-        </li>
-        <li class="nav-item">
             <a href="{{ route('contacts.index') }}" class="nav-link {{ Request::is('contacts*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-address-book text-green"></i>
                 <p>Contacts</p>
@@ -54,6 +42,18 @@
             <a href="{{ route('feedback.index') }}" class="nav-link {{ Request::is('feedback*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-comment-dots text-green"></i>
                 <p>Feedback</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('rooms.index') }}" class="nav-link {{ Request::is('rooms*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-bed text-green"></i>
+                <p>Rooms</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a href="{{ route('occupations.index') }}" class="nav-link {{ Request::is('occupations*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-user-tie text-green"></i>
+                <p>Room Occupation Settings</p>
             </a>
         </li>
     </ul>
@@ -209,24 +209,6 @@
     </ul>
 </li>
 
-<li class="nav-item has-treeview {{ Request::is('predictions*') ? 'menu-open' : '' }}">
-    <a href="#" class="nav-link {{ Request::is('predictions*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-brain text-purple"></i>
-        <p>
-            Predictions
-            <i class="right fas fa-angle-left text-purple"></i>
-        </p>
-    </a>
-    <ul class="nav nav-treeview">
-        <li class="nav-item">
-            <a href="{{ route('predictions.index') }}" class="nav-link {{ Request::is('predictions*') ? 'active' : '' }}">
-                <i class="nav-icon fas fa-chart-line text-green"></i>
-                <p>ML Predictions</p>
-            </a>
-        </li>
-    </ul>
-</li>
-
 <li class="nav-item has-treeview {{ Request::is('reports*') ? 'menu-open' : '' }}">
     <a href="#" class="nav-link {{ Request::is('reports*') ? 'active' : '' }}">
         <i class="nav-icon fas fa-clipboard-list text-purple"></i>
@@ -240,6 +222,24 @@
             <a href="{{ route('reports.index') }}" class="nav-link {{ Request::is('reports*') ? 'active' : '' }}">
                 <i class="nav-icon fas fa-chart-line text-green"></i>
                 <p>Reports</p>
+            </a>
+        </li>
+    </ul>
+</li>
+
+<li class="nav-item has-treeview {{ Request::is('predictions*') ? 'menu-open' : '' }}">
+    <a href="#" class="nav-link {{ Request::is('predictions*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-brain text-purple"></i>
+        <p>
+            Predictions
+            <i class="right fas fa-angle-left text-purple"></i>
+        </p>
+    </a>
+    <ul class="nav nav-treeview">
+        <li class="nav-item">
+            <a href="{{ route('predictions.index') }}" class="nav-link {{ Request::is('predictions*') ? 'active' : '' }}">
+                <i class="nav-icon fas fa-chart-line text-green"></i>
+                <p>ML Predictions</p>
             </a>
         </li>
     </ul>

@@ -12,6 +12,7 @@ use App\Models\Gallery;
 
 class HomeController extends Controller
 {
+
     public function room_details($id){
 
         $room = Room::find($id);

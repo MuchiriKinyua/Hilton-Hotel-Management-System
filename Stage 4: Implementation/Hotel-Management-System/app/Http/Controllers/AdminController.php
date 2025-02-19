@@ -7,7 +7,12 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Room;
 use App\Models\Gallery;
+use App\Models\Guest;
 use App\Models\Booking;
+use App\Models\Invoice;
+use App\Models\Order;
+use App\Models\Staff;
+use App\Models\Inventory;
 use Illuminate\Support\Str;
 use App\Models\Contact;
 use Notification;
@@ -17,26 +22,34 @@ use App\Notifications\MyFirstNotification;
 class AdminController extends Controller
 {
     public function index()
-    {
-        if (Auth::id()) {
-            $usertype = Auth::user()->usertype;
+{
+    $totalUsers = User::count();
+    $totalBooking = Booking::count();
+    $totalGuest = Guest::count();
+    $totalRoom = Room::count();
+    $totalInvoice = Invoice::count();
+    $totalOrder = Order::count();
+    $totalStaff = Staff::count();
+    $totalInventory = Inventory::count();
 
-            if ($usertype == 'user') {
-                $room = Room::all();
+    if (Auth::id()) {
+        $usertype = Auth::user()->usertype;
 
-                $gallery = Gallery::all();
-
-                return view('home.index', compact('room', 'gallery'));
-            } else if ($usertype == 'admin') {
-                return view('home');
-            } else {
-                return redirect()->back();
-            }
+        if ($usertype == 'user') {
+            $room = Room::all();
+            $gallery = Gallery::all();
+            return view('home.index', compact('room', 'gallery', 'totalUsers', 'totalBooking', 'totalGuest', 'totalRoom', 'totalInvoice', 'totalOrder', 'totalStaff', 'totalInventory'));
+        } else if ($usertype == 'admin') {
+            return view('home', compact('totalUsers', 'totalBooking', 'totalGuest', 'totalRoom', 'totalInvoice', 'totalOrder', 'totalStaff', 'totalInventory'));
+        } else {
+            return redirect()->back();
         }
-
-        // Optional: Redirect if user is not authenticated
-        return redirect()->route('login');
     }
+
+    return view('home', compact('totalUsers')); // This is now only for unauthenticated users
+
+    // No need for a separate redirect to login, as the above handles it.
+}
     public function update(Request $request, $id)
 {
     $user = User::findOrFail($id);
