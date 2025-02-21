@@ -4,8 +4,7 @@
 
 # Overview
 
-![Screenshot from 2025-02-19 17-41-45](https://github.com/user-attachments/assets/16575d16-5f5a-4422-a9df-b8488956cceb)
-
+![Screenshot from 2025-02-21 07-23-14](https://github.com/user-attachments/assets/73d62c1f-5df6-4bc3-8857-df33d47a5cc2)
 
 This project is a Laravel-based hotel booking system designed for efficient room reservations, cancellations, and management of hotel operations. The system provides a seamless experience for customers and administrators.
 
