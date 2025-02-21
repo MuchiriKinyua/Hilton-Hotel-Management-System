@@ -1,10 +1,11 @@
 # HOTEL BOOKING AND CANCELLATION SYSTEM
 
-![Screenshot from 2024-12-15 15-41-06](https://github.com/user-attachments/assets/949812d7-6975-48bc-91f0-b7f6e3940e4d)
+![Screenshot from 2025-02-21 07-06-33](https://github.com/user-attachments/assets/5634ecc9-b2de-41de-b188-640af87e9725)
+
+## Overview
 
 ![Screenshot from 2025-02-19 17-41-45](https://github.com/user-attachments/assets/16575d16-5f5a-4422-a9df-b8488956cceb)
 
-## Overview
 This project aims to analyze hotel booking data to understand and predict factors influencing cancellations. With a focus on City and Resort Hotels, the goal is to identify patterns and provide recommendations to mitigate cancellation risks. The predictive model developed will enhance revenue stability by recognizing seasonal trends, analyzing waiting times, and enabling personalized loyalty programs. Ultimately, the project seeks to optimize booking processes and contribute to increased profitability in the hotel industry.
 
 ## Table of Contents
