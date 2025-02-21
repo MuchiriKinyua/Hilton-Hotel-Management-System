@@ -6,7 +6,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Predictions</h1>
+                    <h1>Hotel Bookings Predictions</h1>
                 </div>
             </div>
         </div>
