@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -85,8 +83,6 @@ Route::resource('predictions', App\Http\Controllers\PredictionController::class)
 Route::resource('rooms', App\Http\Controllers\RoomController::class);
 Route::resource('staff', App\Http\Controllers\StaffController::class);
 Route::resource('transactions', App\Http\Controllers\TransactionController::class);
-Route::resource('roles', App\Http\Controllers\RoleController::class);
-Route::resource('permissions', App\Http\Controllers\PermissionController::class);
 Route::resource('users', UserController::class);
 Route::resource('audits', App\Http\Controllers\AuditController::class);
 Route::resource('billings', App\Http\Controllers\BillingController::class);
@@ -101,3 +97,5 @@ Route::resource('reports', App\Http\Controllers\ReportController::class);
 Route::resource('stations', App\Http\Controllers\StationController::class);
 Route::resource('suppliers', App\Http\Controllers\SupplierController::class);
 Route::resource('tables', App\Http\Controllers\TableController::class);
+Route::resource('roles', App\Http\Controllers\RoleController::class);
+Route::resource('permissions', App\Http\Controllers\PermissionController::class);
