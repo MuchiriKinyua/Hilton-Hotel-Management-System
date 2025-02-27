@@ -46,7 +46,7 @@ Settings:
 
 Manage system-wide settings and configurations.
 
-![Screenshot from 2025-02-21 07-14-14](https://github.com/user-attachments/assets/b749015c-8a46-430a-93d1-91beb63ca2f6)
+![Screenshot from 2025-02-27 22-28-23](https://github.com/user-attachments/assets/a5de8982-a271-4155-bfdf-29d803b3b385)
 
 # Technologies Used
 
